@@ -68,11 +68,17 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake_items> {
 //        then we store the substring starting from the start to index+2 in distance string
         int index = str.indexOf("of");
 //        if "of" is not present then we save "Near To" in distance
-        if(index==-1) distance = "Near to";
-        else distance = str.substring(0,index+2);
+        if(index==-1) {
+            distance = "Near to";
+            index=0;
+        }
+        else{
+            distance = str.substring(0,index+2);
+            index += 3;
+        }
 
 //        rest part is stored in place string
-        place = str.substring(index+3,str.length()-1);
+        place = str.substring(index,str.length());
 
 //        Here we store the distance value in its respective TextBox
         TextView distance_textbox = (TextView) listview.findViewById(R.id.distance_layout);
