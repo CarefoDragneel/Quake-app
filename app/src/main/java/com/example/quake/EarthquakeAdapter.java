@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,12 +48,16 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake_items> {
 //        @param: position -> defines each list items
         Earthquake_items list_items = getItem(position);
 
-//        creating Date object in order use it in SimpleDateFormat class to format data in to desired form
-        Date dateObject = new Date(list_items.getEarthquake_date());
+
+//        DecimalFormat class is same as SimpleDateFormat
+//        it is used to change the format of decimal to specify how many digits should be present after the decimal point
+        DecimalFormat magnitude_format = new DecimalFormat("0.0");
+//        here we use format method to convert into desired format and this method returns a String value
+        String magnitude = magnitude_format.format(list_items.getEarthquake_magnitude());
 
 //      Here we set the text in each text view present in the new list items layout
         TextView  magnitude_textbox= (TextView) listview.findViewById(R.id.magnitude_layout);
-        magnitude_textbox.setText(list_items.getEarthquake_magnitude());
+        magnitude_textbox.setText(magnitude);
 
 
 //      Below code is an algorithm to extract the Earthquake_place string in two parts to create
@@ -77,6 +82,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake_items> {
         TextView place_textbox = (TextView) listview.findViewById(R.id.place_layout);
         place_textbox.setText(place);
 
+
+//        creating Date object in order use it in SimpleDateFormat class to format data in to desired form
+        Date dateObject = new Date(list_items.getEarthquake_date());
 
 //        SimpleDateFormat class is used to create an object which is used to format the JSON time value in milliseconds to date
         SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");

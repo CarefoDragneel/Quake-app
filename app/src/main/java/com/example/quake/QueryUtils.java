@@ -62,7 +62,7 @@ public class QueryUtils {
                 JSONObject prop = feat_elements.getJSONObject("properties");
 
 //               /** object to access the magnitude key */
-                String magnitude = prop.getString("mag");
+                double magnitude = prop.getDouble("mag");
 
 //               /** object to access the place key */
                 String place = prop.getString("place");
