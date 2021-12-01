@@ -1,6 +1,7 @@
 package com.example.quake;
 
 import android.app.Activity;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 
 import java.text.DecimalFormat;
@@ -58,6 +60,16 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake_items> {
 //      Here we set the text in each text view present in the new list items layout
         TextView  magnitude_textbox= (TextView) listview.findViewById(R.id.magnitude_layout);
         magnitude_textbox.setText(magnitude);
+
+//        GradientDrawable class is used to modify the Drawable class elements, it extends Drawable class
+//        getBackground method returns a Drawable type object, so we need to type cast it
+        GradientDrawable magnitude_circle = (GradientDrawable) magnitude_textbox.getBackground();
+
+//        here we obtain the desired color from the defined getMagnitudeColor method
+        int desired_magnitude_color = getMagnitudeColor(list_items.getEarthquake_magnitude());
+
+//        here we set the color of the magnitude circle
+        magnitude_circle.setColor(desired_magnitude_color);
 
 
 //      Below code is an algorithm to extract the Earthquake_place string in two parts to create
@@ -113,4 +125,54 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake_items> {
         layout file */
         return listview;
     }
+
+
+//    this method is to obtain right color resource for the drawable circle
+//    @param: double magnitude -> the magnitude value
+//    return the resource id of the color required
+    int getMagnitudeColor(double magnitude){
+
+//        this statement is to get the switch changer
+//        it uses the floor method to obtain the int rounded value to greatest smaller integer
+        int swt = (int)Math.floor(magnitude);
+//        this is to store magnitude resource id
+        int magnitude_resource_id = 0;
+//        these are the switch cases to specify the correct color according to the magnitude 
+        switch (swt){
+            case 0:
+            case 1:
+                magnitude_resource_id = R.color.magnitude1;
+                break;
+            case 2:
+                magnitude_resource_id = R.color.magnitude2;
+                break;
+            case 3:
+                magnitude_resource_id = R.color.magnitude3;
+                break;
+            case 4:
+                magnitude_resource_id = R.color.magnitude4;
+                break;
+            case 5:
+                magnitude_resource_id = R.color.magnitude5;
+                break;
+            case 6:
+                magnitude_resource_id = R.color.magnitude6;
+                break;
+             case 7:
+                magnitude_resource_id = R.color.magnitude7;
+                 break;
+             case 8:
+                magnitude_resource_id = R.color.magnitude8;
+                 break;
+             case 9:
+                magnitude_resource_id = R.color.magnitude9;
+                 break;
+            default:
+                magnitude_resource_id = R.color.magnitude10plus;
+                break;
+        }
+//      in return statement we enter the extracted color from its resource id;
+        return ContextCompat.getColor(getContext(), magnitude_resource_id);
+    }
+
 }
