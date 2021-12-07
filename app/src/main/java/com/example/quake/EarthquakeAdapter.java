@@ -137,7 +137,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake_items> {
         int swt = (int)Math.floor(magnitude);
 //        this is to store magnitude resource id
         int magnitude_resource_id = 0;
-//        these are the switch cases to specify the correct color according to the magnitude 
+//        these are the switch cases to specify the correct color according to the magnitude
         switch (swt){
             case 0:
             case 1:
