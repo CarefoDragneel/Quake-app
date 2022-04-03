@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //    here we create an inner class which will help us in implementing multi-threading in the app
+//    for all the methods present in AsyncTask checkout the documentation
     private class Earthquake_AsyncTask extends AsyncTask<String, Void,ArrayList<Earthquake_items>>{
 
 //        we override the doInBackground method which will be implemented in the background thread
