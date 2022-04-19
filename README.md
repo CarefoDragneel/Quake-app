@@ -1,7 +1,7 @@
 
 # Quake App
 
-Simple app to show earthquake data
+Simple app to show earthquake data. It also uses MultiThreading by fetching network data on separate thread.
 
 ## App Apk
 
